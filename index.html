@@ -12,10 +12,27 @@
       box-sizing: border-box;
     }
 
-    body {
-      height: 100vh;
-      background: linear-gradient(135deg, #ffdde1, #fbb1bd, #fbc2eb);
+    body, html {
+      height: 100%;
       font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Video background style */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Kontainer konten */
+    .content-wrapper {
+      height: 100vh;
+      width: 100vw;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -23,27 +40,31 @@
     }
 
     .card {
-      background: white;
-      padding: 40px;
+      background: rgba(0, 0, 0, 0.3); /* sedikit gelap transparan */
+      padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: none;
       max-width: 500px;
       width: 100%;
       text-align: center;
       animation: fadeIn 1.5s ease-in-out;
+      color: white;
+      backdrop-filter: blur(4px); /* efek blur transparan */
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 3em;
-      color: #e63946;
+      color: #fff;
       margin-bottom: 20px;
+      text-shadow: 1px 1px 3px #000;
     }
 
     p {
       font-size: 1.2em;
-      color: #444;
+      color: #f0f0f0;
       margin-bottom: 30px;
+      text-shadow: 1px 1px 2px #000;
     }
 
     .btn-love {
@@ -96,36 +117,48 @@
     .output {
       margin-top: 20px;
       padding: 15px;
-      background-color: #fff0f5;
+      background-color: rgba(255, 255, 255, 0.2);
       border-radius: 10px;
       font-size: 1.1em;
-      color: #333;
+      color: white;
+      text-shadow: 1px 1px 2px #000;
     }
   </style>
 </head>
 <body>
 
-  <!-- Halaman Pertama -->
-  <div class="card" id="page1">
-    <div class="heart-emoji">💖</div>
-    <h1>Hai Sayang apa kabar</h1>
-    <p>
-     aku kangen banget sama kamu<br>
-      kamu disama baik baik ya jangan nakal jangan telat makan di jaga kesehatanya.<br><br>
-      Aku sayang kamu cepet balik lagi kesini ya sayang.
-    </p>
-    <button class="btn-love" onclick="goToPage2()">jangan di klik!</button>
+  <!-- 🎥 Video sebagai latar belakang -->
+  <video class="video-bg" autoplay loop muted playsinline>
+    <source src="video-latar.mp4" type="video/mp4">
+    Browser kamu tidak mendukung video.
+  </video>
+
+  <!-- Konten -->
+  <div class="content-wrapper">
+    <!-- Halaman Pertama -->
+    <div class="card" id="page1">
+      <div class="heart-emoji">💖</div>
+      <h1>Hai Sayang apa kabar</h1>
+      <p>
+        Aku kangen banget sama kamu.<br>
+        Kamu di sana baik-baik ya, jangan nakal dan jangan telat makan.<br><br>
+        Aku sayang kamu, cepet balik lagi ke sini ya sayang.
+      </p>
+      <button class="btn-love" onclick="goToPage2()">Jangan di klik!</button>
+    </div>
+
+    <!-- Halaman Kedua -->
+    <div class="card hidden" id="page2">
+      <div class="heart-emoji">💕</div>
+      <h1>Kan di bilang jangan di klik 😅</h1>
+      <p>Sekarang kamu harus bales yaa 😘</p>
+      <textarea id="loveMessage" placeholder="Tulis sesuatu yang manis..."></textarea><br><br>
+      <button class="btn-love" onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
+      <div class="output" id="outputMessage"></div>
+    </div>
   </div>
 
-  <!-- Halaman Kedua -->
-  <div class="card hidden" id="page2">
-    <div class="heart-emoji">💕</div>
-    <h1>kan di bilang jangan di klik sekarang kamu harus bales</h1>
-    <textarea id="loveMessage" placeholder="Tulis sesuatu yang manis..."></textarea><br><br>
-    <button class="btn-love" onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
-    <div class="output" id="outputMessage"></div>
-  </div>
-
+  <!-- Script -->
   <script>
     function goToPage2() {
       document.getElementById("page1").classList.add("hidden");
@@ -139,16 +172,10 @@
       if (message === "") {
         output.innerHTML = "❤️ Tulis dulu sesuatu dong :)";
       } else {
-        // Ganti dengan nomor tujuan kamu (format internasional tanpa tanda +)
-        const phoneNumber = "+12498950768"; // Ganti dengan nomor kamu
-
+        const phoneNumber = "12498950768"; // Ganti dengan nomormu
         const encodedMessage = encodeURIComponent(message);
         const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-
-        // Tampilkan pesan sementara
         output.innerHTML = `💌 Mengarahkan ke WhatsApp...`;
-
-        // Arahkan ke WhatsApp
         window.location.href = waUrl;
       }
     }
