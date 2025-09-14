@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ucapan Cinta</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
   <style>
@@ -12,41 +12,30 @@
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-    }
-
-    /* Video background */
-    .video-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    .content-wrapper {
+    body {
       height: 100vh;
+      background-image: url('foto-aku.jpg'); /* GANTI dengan nama file foto kamu */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Poppins', sans-serif;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 20px;
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(255, 255, 255, 0); /* transparan */
       padding: 30px;
       border-radius: 20px;
+      box-shadow: none; /* hapus bayangan */
       max-width: 500px;
       width: 100%;
       text-align: center;
       animation: fadeIn 1.5s ease-in-out;
-      color: white;
-      backdrop-filter: blur(6px);
+      color: white; /* agar teks kelihatan di atas gambar */
+      backdrop-filter: blur(2px); /* opsional: bikin blur latar belakang */
     }
 
     h1 {
@@ -124,38 +113,28 @@
 </head>
 <body>
 
-  <!-- ✅ VIDEO LATAR BELAKANG -->
-  <video class="video-bg" autoplay loop muted playsinline>
-    <source src="https://github.com/reyreygits/kangenya/raw/8f104b94e94c22da9e71ad6de37dd56973ac5c6b/video-latar.mp4" type="video/mp4" />
-    Browser kamu tidak mendukung video HTML5.
-  </video>
-
-  <!-- ✅ KONTEN -->
-  <div class="content-wrapper">
-    <!-- Halaman Pertama -->
-    <div class="card" id="page1">
-      <div class="heart-emoji">💖</div>
-      <h1>Hai Sayang apa kabar</h1>
-      <p>
-        Aku kangen banget sama kamu.<br>
-        Kamu di sana baik-baik ya, jangan nakal dan jangan telat makan.<br><br>
-        Aku sayang kamu, cepet balik lagi ke sini ya sayang.
-      </p>
-      <button class="btn-love" onclick="goToPage2()">Jangan di klik!</button>
-    </div>
-
-    <!-- Halaman Kedua -->
-    <div class="card hidden" id="page2">
-      <div class="heart-emoji">💕</div>
-      <h1>Kan di bilang jangan di klik 😅</h1>
-      <p>Sekarang kamu harus bales yaa 😘</p>
-      <textarea id="loveMessage" placeholder="Tulis sesuatu yang manis..."></textarea><br><br>
-      <button class="btn-love" onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
-      <div class="output" id="outputMessage"></div>
-    </div>
+  <!-- Halaman Pertama -->
+  <div class="card" id="page1">
+    <div class="heart-emoji">💖</div>
+    <h1>Hai Sayang apa kabar</h1>
+    <p>
+      Aku kangen banget sama kamu.<br>
+      Kamu di sana baik-baik ya, jangan nakal dan jangan telat makan.<br><br>
+      Aku sayang kamu, cepet balik lagi ke sini ya sayang.
+    </p>
+    <button class="btn-love" onclick="goToPage2()">Jangan di klik!</button>
   </div>
 
-  <!-- ✅ SCRIPT -->
+  <!-- Halaman Kedua -->
+  <div class="card hidden" id="page2">
+    <div class="heart-emoji">💕</div>
+    <h1>Kan di bilang jangan di klik 😅</h1>
+    <p>Sekarang kamu harus bales yaa 😘</p>
+    <textarea id="loveMessage" placeholder="Tulis sesuatu yang manis..."></textarea><br><br>
+    <button class="btn-love" onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
+    <div class="output" id="outputMessage"></div>
+  </div>
+
   <script>
     function goToPage2() {
       document.getElementById("page1").classList.add("hidden");
@@ -169,9 +148,12 @@
       if (message === "") {
         output.innerHTML = "❤️ Tulis dulu sesuatu dong :)";
       } else {
-        const phoneNumber = "12498950768"; // Ganti dengan nomormu
+        // Ganti dengan nomor tujuan kamu (format internasional tanpa tanda +)
+        const phoneNumber = "6281234567890"; // Ganti dengan nomor kamu
+
         const encodedMessage = encodeURIComponent(message);
         const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
         output.innerHTML = `💌 Mengarahkan ke WhatsApp...`;
         window.location.href = waUrl;
       }
