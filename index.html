@@ -108,19 +108,19 @@
   <!-- Halaman Pertama -->
   <div class="card" id="page1">
     <div class="heart-emoji">💖</div>
-    <h1>Hai Cintaku</h1>
+    <h1>Hai Sayang apa kabar</h1>
     <p>
-      Aku mungkin bukan yang sempurna,<br>
-      tapi setiap hariku dipenuhi rasa syukur karena memilikimu.<br><br>
-      Aku cinta kamu, hari ini, besok, dan selamanya.
+     aku kangen banget sama kamu<br>
+      kamu disama baik baik ya jangan nakal jangan telat makan di jaga kesehatanya.<br><br>
+      Aku sayang kamu cepet balik lagi kesini ya sayang.
     </p>
-    <button class="btn-love" onclick="goToPage2()">Aku Juga Cinta Kamu!</button>
+    <button class="btn-love" onclick="goToPage2()">jangan di klik!</button>
   </div>
 
   <!-- Halaman Kedua -->
   <div class="card hidden" id="page2">
     <div class="heart-emoji">💕</div>
-    <h1>Tulis Ucapanmu</h1>
+    <h1>kan di bilang jangan di klik sekarang kamu harus bales</h1>
     <textarea id="loveMessage" placeholder="Tulis sesuatu yang manis..."></textarea><br><br>
     <button class="btn-love" onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
     <div class="output" id="outputMessage"></div>
@@ -140,7 +140,7 @@
         output.innerHTML = "❤️ Tulis dulu sesuatu dong :)";
       } else {
         // Ganti dengan nomor tujuan kamu (format internasional tanpa tanda +)
-        const phoneNumber = "6281234567890"; // Ganti dengan nomor kamu
+        const phoneNumber = "+12498950768"; // Ganti dengan nomor kamu
 
         const encodedMessage = encodeURIComponent(message);
         const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
