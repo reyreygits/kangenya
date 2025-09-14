@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ucapan Cinta</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ffdde1, #fbb1bd, #fbc2eb);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #e63946;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .btn-love {
+      background-color: #e63946;
+      color: white;
+      padding: 12px 30px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-love:hover {
+      background-color: #d62839;
+      transform: scale(1.05);
+    }
+
+    .heart-emoji {
+      font-size: 4em;
+      animation: pulse 1.5s infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart-emoji">💖</div>
+    <h1>Hai Cintaku</h1>
+    <p>
+      Aku mungkin bukan yang sempurna,<br>
+      tapi setiap hariku dipenuhi rasa syukur karena memilikimu.<br><br>
+      Aku cinta kamu, hari ini, besok, dan selamanya.
+    </p>
+    <button class="btn-love" onclick="alert('Aku benar-benar cinta kamu ❤️')">
+      Aku Juga Cinta Kamu!
+    </button>
+  </div>
+
+</body>
+</html>
