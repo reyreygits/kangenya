@@ -79,24 +79,34 @@
       100% { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
-      .card {
-        padding: 25px;
-      }
+    .hidden {
+      display: none;
+    }
 
-      h1 {
-        font-size: 2.5em;
-      }
+    .input-page textarea {
+      width: 100%;
+      height: 100px;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      resize: none;
+    }
 
-      p {
-        font-size: 1em;
-      }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #fff0f5;
+      border-radius: 10px;
+      font-size: 1.1em;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
+  <!-- Halaman Pertama -->
+  <div class="card" id="page1">
     <div class="heart-emoji">💖</div>
     <h1>Hai Cintaku</h1>
     <p>
@@ -104,10 +114,35 @@
       tapi setiap hariku dipenuhi rasa syukur karena memilikimu.<br><br>
       Aku cinta kamu, hari ini, besok, dan selamanya.
     </p>
-    <button class="btn-love" onclick="alert('Aku benar-benar cinta kamu ❤️')">
-      Aku Juga Cinta Kamu!
-    </button>
+    <button class="btn-love" onclick="goToPage2()">Aku Juga Cinta Kamu!</button>
   </div>
+
+  <!-- Halaman Kedua -->
+  <div class="card hidden" id="page2">
+    <div class="heart-emoji">💕</div>
+    <h1>Tulis Ucapanmu</h1>
+    <textarea id="loveMessage" placeholder="Tulis sesuatu yang manis..."></textarea><br><br>
+    <button class="btn-love" onclick="showMessage()">Kirim</button>
+    <div class="output" id="outputMessage"></div>
+  </div>
+
+  <script>
+    function goToPage2() {
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.remove("hidden");
+    }
+
+    function showMessage() {
+      const message = document.getElementById("loveMessage").value;
+      const output = document.getElementById("outputMessage");
+
+      if (message.trim() === "") {
+        output.innerHTML = "❤️ Tulis dulu sesuatu dong :)";
+      } else {
+        output.innerHTML = `💌 Pesanmu: <br><em>"${message}"</em>`;
+      }
+    }
+  </script>
 
 </body>
 </html>
